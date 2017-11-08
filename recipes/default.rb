@@ -42,14 +42,14 @@ template '/etc/nginx/sites-available/proxy.conf' do
 end
 
 
-# link '/etc/nginx/sites-enabled/default' do
-# 	action :delete
-# end
+link '/etc/nginx/sites-enabled/default' do
+	action :delete
+end
 
-# link '/etc/nginx/sites-available/proxy.conf' do
-# 	to '/etc/nginx/sites-enabled'
-# 	action :create
-# end
+link '/etc/nginx/sites-available/proxy.conf' do
+	to '/etc/nginx/sites-enabled'
+	action :create
+end
 
 service 'nginx' do
 	action :restart
