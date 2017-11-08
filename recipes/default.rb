@@ -34,21 +34,11 @@ execute 'install pm2' do
 	command "npm install pm2 -g"
 end
 
-template '/etc/nginx/sites-available/proxy.conf' do
+template '/etc/nginx/sites-available/default' do
 	source 'proxy.conf.erb'
-	owner 'root'
-	group 'root'
+	owner 'www-data'
+	group 'www-data'
 	mode '0755'
-end
-
-
-link '/etc/nginx/sites-enabled/default' do
-	action :delete
-end
-
-link '/etc/nginx/sites-available/proxy.conf' do
-	to '/etc/nginx/sites-enabled'
-	action :create
 end
 
 service 'nginx' do
